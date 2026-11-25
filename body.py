@@ -14,3 +14,6 @@ class body():
         self.Temprature_body+=self.add_Temp
         return self.Q_addition
 
+if __name__=='__main__':
+    app= QApplication()
+    app.exec()
