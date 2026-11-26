@@ -1,2 +1,3 @@
-def main() -> None:
-    print("Hello from home-work-5!")
+from .ui import main
+
+__all__ = ["main"]
