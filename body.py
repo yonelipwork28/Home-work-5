@@ -12,8 +12,16 @@ class body():
         self.Q_addition = float(Q_add)
         self.add_Temp = (self.Q_addition)/(self.mass_body*self.H_Cap_Body)
         self.Temprature_body+=self.add_Temp
-        return self.Q_addition
+        return self.Temprature_body
 
 if __name__=='__main__':
     app= QApplication()
+
+
+
+    Body_A=body(100,0.15,200)
+    body_add_heat=Body_A.add_heat(20)
+    print(body_add_heat)
+
+
     app.exec()
