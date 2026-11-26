@@ -238,3 +238,7 @@ def main() -> None:
     window = HeatTransferWindow()
     window.show()
     app.exec()
+
+
+if __name__=="__main__":
+    main()
