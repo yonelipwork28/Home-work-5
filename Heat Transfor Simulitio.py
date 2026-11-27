@@ -1,5 +1,5 @@
 import sys
-
+from AboutWindow import AboutWindow
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication,
@@ -62,11 +62,17 @@ class HeatTransferWindow(QMainWindow):
         grid.addWidget(self._make_fields(), 2, 3)
         layout.addWidget(panel, 1)
 
-        footer = QHBoxLayout()
-        footer.addStretch()
-        footer.addWidget(QPushButton("About Me"))
-        footer.addStretch()
-        layout.addLayout(footer)
+
+        about_layout = QHBoxLayout()
+        about_layout.addStretch()
+        self.About = QPushButton("About Me")
+        self.About.clicked.connect(self.open_about)
+        about_layout.addWidget(self.About)
+        about_layout.addStretch()
+        layout.addLayout(about_layout)
+
+
+
 
         self.setStyleSheet(
             """
@@ -131,7 +137,10 @@ class HeatTransferWindow(QMainWindow):
             }
             """
         )
-
+    def open_about(self):
+            self.window_about= AboutWindow()
+            self.window_about.show()
+    
     @staticmethod
     def _make_tank(name: str, color: str) -> QFrame:
         card = QFrame()
@@ -178,6 +187,7 @@ class HeatTransferWindow(QMainWindow):
         return panel
 
     @staticmethod
+
     def _make_connection() -> QWidget:
         panel = QWidget()
         panel.setFixedHeight(220)
