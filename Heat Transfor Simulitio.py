@@ -1,5 +1,6 @@
 import sys
 from AboutWindow import AboutWindow
+from GraphWindow import GraphWindow
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication,
@@ -71,7 +72,9 @@ class HeatTransferWindow(QMainWindow):
         about_layout.addStretch()
         layout.addLayout(about_layout)
 
+        self.graph_window: GraphWindow | None = None
 
+    
 
 
         self.setStyleSheet(
@@ -232,14 +235,22 @@ class HeatTransferWindow(QMainWindow):
         layout.addWidget(QLineEdit(placeholderText="Heat capacity (J/kg·K)"))
         return fields
 
-    @staticmethod
-    def _make_buttons() -> QWidget:
+    def open_graph_window(self) -> None:
+        if self.graph_window is None:
+            self.graph_window = GraphWindow(self)
+        self.graph_window.show()
+        self.graph_window.raise_()
+        self.graph_window.activateWindow()
+
+    def _make_buttons(self) -> QWidget:
         buttons = QWidget()
         layout = QVBoxLayout(buttons)
         start = QPushButton("Start")
         start.setObjectName("startButton")
         layout.addWidget(start)
-        layout.addWidget(QPushButton("Graphs"))
+        graphs = QPushButton("Graphs")
+        graphs.clicked.connect(self.open_graph_window)
+        layout.addWidget(graphs)
         return buttons
 
 

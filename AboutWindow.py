@@ -10,12 +10,13 @@ class AboutWindow(QWidget):
         super().__init__()
 
         self.setWindowTitle('About Me')
+        self.setStyleSheet('background-color: white')
 
         self.Title_welcom = QLabel('Welcome to Card of' , self)
         self.Title_welcom.setGeometry(50,20,300,60)
         self.Title_welcom.setStyleSheet("font-size: 30px ;")
         self.my_name = QLabel('Yonatan Lipshitz' , self)
-        self.my_name.setGeometry(50,60,300,60)
+        self.my_name.setGeometry(50,65,300,60)
         self.my_name.setStyleSheet("font-size: 30px ; font-Weight: bold; ")
 
 
@@ -30,10 +31,20 @@ class AboutWindow(QWidget):
         self.my_Linkedin.setOpenExternalLinks(True)
         self.my_Linkedin.setStyleSheet("font-size: 20px ;")
 
+        self.link_GitHub = QLabel(self)
+        self.link_GitHub.setGeometry(50,230,300,30)
+        self.link_GitHub.setText('<a href="https://github.com/yonelipwork28/ice-cream-4.git">link of My GitHub</a>')
+        self.link_GitHub.setTextInteractionFlags(Qt.TextBrowserInteraction)
+        self.link_GitHub.setOpenExternalLinks(True)
+        self.link_GitHub.setStyleSheet("font-size: 20px ;")
+
+
+
+
         img_path = os.path.join(os.path.dirname(__file__), 'spongbob.jpeg')
         image = QPixmap(img_path).scaled(300,300)
         self.my_picture=QLabel(self)
-        self.my_picture.setGeometry(20,260,300,300)
+        self.my_picture.setGeometry(20,280,300,300)
         self.my_picture.setPixmap(image)
         
         
